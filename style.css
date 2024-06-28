@@ -1,0 +1,12 @@
+.jumbotron {
+  padding-top: 6rem;
+  background-image: url(img/img2.jpg);
+}
+
+#projects {
+  background-image: url(img/img2.jpg);
+}
+
+section {
+  padding-top: 4rem;
+}
