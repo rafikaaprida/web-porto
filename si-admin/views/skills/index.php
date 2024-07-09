@@ -1,7 +1,7 @@
 <?php
 // session_start();
 // if (!isset($_SESSION['user'])) {
-//     return header('Location: http://localhost/web-porto/si-admin/views/Login/');
+//     return header('Location: http://localhost/portofolio-rafika/si-admin/views/Login/');
 // }
 ?>
 <!doctype html>
@@ -28,7 +28,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col col-sm-9">USERS</div>
+                    <div class="col col-sm-9">SKILLS</div>
                     <div class="col col-sm-3">
                         <button type="button" id="add_data" class="btn btn-success btn-sm float-end">Add</button>
                     </div>
@@ -39,10 +39,10 @@
                     <table class="table table-striped table-bordered" id="sample_data">
                         <thead>
                             <tr>
-                                <th>Full Name</th>
-                                <th>Email</th>
-                                <th>Job</th>
-                                <th>Expected Position</th>
+                                <th>User Id</th>
+                                <th>Skill Name</th>
+                                <th>Rating</th>
+                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -61,34 +61,24 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" name="full_name" id="full_name" class="form-control" />
-                                <span id="full_name_error" class="text-danger"></span>
+                                <label class="form-label">User Id</label>
+                                <input type="text" name="user_id" id="user_id" class="form-control" />
+                                <span id="user_id_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" />
-                                <span id="email_error" class="text-danger"></span>
+                                <label class="form-label">Skill Name</label>
+                                <input type="skill_name" name="skill_name" id="skill_name" class="form-control" />
+                                <span id="skill_name_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="password" name="password" id="password" class="form-control" />
-                                <span id="password_error" class="text-danger"></span>
+                                <label class="form-label">Rating</label>
+                                <input type="rating" name="rating" id="rating" class="form-control" />
+                                <span id="rating_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Job</label>
-                                <input type="text" name="job" id="job" class="form-control" />
-                                <span id="job_error" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Expected Position</label>
-                                <input type="text" name="expected_position" id="expected_position" class="form-control" />
-                                <span id="expected_position_error" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Photo</label>
-                                <input type="text" name="photo" id="photo" class="form-control" />
-                                <span id="photo_error" class="text-danger"></span>
+                                <label class="form-label">Description</label>
+                                <input type="text" name="description" id="description" class="form-control" />
+                                <span id="description_error" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -121,16 +111,14 @@
                 event.preventDefault();
                 if ($('#action').val() == "Add") {
                     var formData = {
-                        'full_name': $('#full_name').val(),
-                        'email': $('#email').val(),
-                        'password': $('#password').val(),
-                        'job': $('#job').val(),
-                        'expected_position': $('#expected_position').val(),
-                        'photo': $('#photo').val()
+                        'user_id': $('#user_id').val(),
+                        'skill_name': $('#skill_name').val(),
+                        'rating': $('#rating').val(),
+                        'description': $('#description').val()
                     }
 
                     $.ajax({
-                        url: "http://localhost/portofolio-rafika/si-admin/api/users/create.php",
+                        url: "http://localhost/portofolio-rafika/si-admin/api/skills/create.php",
                         method: "POST",
                         data: JSON.stringify(formData),
                         success: function(data) {
@@ -147,16 +135,14 @@
                 } else if ($('#action').val() == "Update") {
                     var formData = {
                         'id': $('#id').val(),
-                        'full_name': $('#full_name').val(),
-                        'email': $('#email').val(),
-                        'password': $('#password').val(),
-                        'job': $('#job').val(),
-                        'expected_position': $('#expected_position').val(),
-                        'photo': $('#photo').val()
+                        'user_id': $('#user_id').val(),
+                        'skill_name': $('#skill_name').val(),
+                        'rating': $('#rating').val(),
+                        'description': $('#description').val()
                     }
 
                     $.ajax({
-                        url: "http://localhost/portofolio-rafika/si-admin/api/users/update.php",
+                        url: "http://localhost/portofolio-rafika/si-admin/api/skills/update.php",
                         method: "PUT",
                         data: JSON.stringify(formData),
                         success: function(data) {
@@ -178,35 +164,35 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json",
-                url: "http://localhost/portofolio-rafika/si-admin/api/users/read.php",
+                url: "http://localhost/portofolio-rafika/si-admin/api/skills/read.php",
                 success: function(response) {
                     // console.log(response);
                     var json = response.body;
                     var dataSet = [];
                     for (var i = 0; i < json.length; i++) {
                         var sub_array = {
-                            'full_name': json[i].full_name,
-                            'email': json[i].email,
-                            'job': json[i].job,
-                            'expected_position': json[i].expected_position,
+                            'user_id': json[i].user_id,
+                            'skill_name': json[i].skill_name,
+                            'rating': json[i].rating,
+                            'description': json[i].description,
                             'action': '<button onclick="showOne(' + json[i].id + ')" class="btn btn-sm btn-warning">Edit</button>' +
-                                '<button onclick="deleteOne(' + json[i].id + ')" class="btn btn-sm btn-danger">Delete</button>'
+                                '<button onclick="deleteOne(' + json[i].id + ')" class="btn btn-sm btn-danger mx-2">Delete</button>'
                         };
                         dataSet.push(sub_array);
                     }
                     $('#sample_data').DataTable({
                         data: dataSet,
                         columns: [{
-                                data: "full_name"
+                                data: "user_id"
                             },
                             {
-                                data: "email"
+                                data: "skill_name"
                             },
                             {
-                                data: "job"
+                                data: "rating"
                             },
                             {
-                                data: "expected_position"
+                                data: "description"
                             },
                             {
                                 data: "action"
@@ -231,15 +217,13 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json",
-                url: "http://localhost/portofolio-rafika/si-admin/api/users/read.php?id=" + id,
+                url: "http://localhost/portofolio-rafika/si-admin/api/skills/read.php?id=" + id,
                 success: function(response) {
                     $('#id').val(response.id);
-                    $('#full_name').val(response.full_name);
-                    $('#email').val(response.email);
-                    $('#password').val(response.password);
-                    $('#job').val(response.job);
-                    $('#expected_position').val(response.expected_position);
-                    $('#photo').val(response.photo);
+                    $('#user_id').val(response.user_id);
+                    $('#skill_name').val(response.skill_name);
+                    $('#rating').val(response.rating);
+                    $('#description').val(response.description);
                 },
                 error: function(err) {
                     console.log(err);
@@ -248,24 +232,27 @@
         }
 
         function deleteOne(id) {
-            alert('Yakin untuk hapus data ?');
-            $.ajax({
-                url: "http://localhost/portofolio-rafika/si-admin/api/users/delete.php",
-                method: "DELETE",
-                data: JSON.stringify({
-                    "id": id
-                }),
-                success: function(data) {
-                    $('#action_button').attr('disabled', false);
-                    $('#message').html('<div class="alert alert-success">' + data + '</div>');
-                    $('#action_modal').modal('hide');
-                    $('#sample_data').DataTable().destroy();
-                    showAll();
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
+            var konfirmasiUser = confirm("Yakin untuk hapus data ?");
+            if (konfirmasiUser) {
+                $.ajax({
+                    url: "http://localhost/portofolio-rafika/si-admin/api/skills/delete.php",
+                    method: "DELETE",
+                    data: JSON.stringify({
+                        id: id,
+                    }),
+                    success: function(data) {
+                        $("#action_button").attr("disabled", false);
+                        $("#message").html('<div class="alert alert-success">' + data + "</div>");
+                        $("#action_modal").modal("hide");
+                        $("#sample_data").DataTable().destroy();
+                        showAll();
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        $("#message").html('<div class="alert alert-danger">' + err.responseJSON + '</div>');
+                    },
+                });
+            }
         }
     </script>
 </body>

@@ -5,10 +5,10 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-AllowHeaders, Authorization, X-Requested-With");
 include_once '../../config/database.php';
-include_once '../../models/User.php';
+include_once '../../models/Users.php';
 $database = new Database();
 $db = $database->getConnection();
-$item = new User($db);
+$item = new Users($db);
 $data = json_decode(file_get_contents("php://input"));
 $item->id = $data->id;
 
@@ -18,7 +18,7 @@ $item->id = $data->id;
     $item->password = $data->password;
     $item->job = $data->job;
     $item->photo = $data->photo;
-    $item->xpected_position = $data->xpected_position;
+    $item->expected_position = $data->expected_position;
 
 
 
