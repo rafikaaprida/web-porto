@@ -1,7 +1,7 @@
 <?php
-session_start();
-if (!isset($_SESSION['user'])) {
-    return header('Location: https://rafikaaprida8.amisbudi.cloud/web-porto/si-admin/views/login/');
+//session_start();
+//if (!isset($_SESSION['user'])) {
+    //return header('Location: https://rafikaaprida8.amisbudi.cloud/web-porto/si-admin/views/login/');
 ?>
 <!doctype html>
 <html lang="en">
