@@ -1,8 +1,8 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['user'])) {
-//     return header('Location: http://localhost/portofolio-rafika/si-admin/views/Login/');
-// }
+session_start();
+ if (!isset($_SESSION['user'])) {
+   return header('Location: http://rafikaaprida8.amisbudi.cloud/portofolio-rafika/si-admin/views/Login/');
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -118,7 +118,7 @@
                     }
 
                     $.ajax({
-                        url: "http://localhost/portofolio-rafika/si-admin/api/skills/create.php",
+                        url: "https://rafikaaprida8.amisbudi.cloud/portofolio-rafika/si-admin/api/skills/create.php",
                         method: "POST",
                         data: JSON.stringify(formData),
                         success: function(data) {
@@ -142,7 +142,7 @@
                     }
 
                     $.ajax({
-                        url: "http://localhost/portofolio-rafika/si-admin/api/skills/update.php",
+                        url: "https://rafikaaprida8.amisbudi.cloud/portofolio-rafika/si-admin/api/skills/update.php",
                         method: "PUT",
                         data: JSON.stringify(formData),
                         success: function(data) {
@@ -164,7 +164,7 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json",
-                url: "http://localhost/portofolio-rafika/si-admin/api/skills/read.php",
+                url: "https://rafikaaprida8.amisbudi.cloud/portofolio-rafika/si-admin/api/skills/read.php",
                 success: function(response) {
                     // console.log(response);
                     var json = response.body;
@@ -217,7 +217,7 @@
             $.ajax({
                 type: "GET",
                 contentType: "application/json",
-                url: "http://localhost/portofolio-rafika/si-admin/api/skills/read.php?id=" + id,
+                url: "http://rafikaaprida8.amisbudi.cloud/portofolio-rafika/si-admin/api/skills/read.php?id=" + id,
                 success: function(response) {
                     $('#id').val(response.id);
                     $('#user_id').val(response.user_id);
@@ -235,7 +235,7 @@
             var konfirmasiUser = confirm("Yakin untuk hapus data ?");
             if (konfirmasiUser) {
                 $.ajax({
-                    url: "http://localhost/portofolio-rafika/si-admin/api/skills/delete.php",
+                    url: "http://rafikaaprida8.amisbudi.cloud/portofolio-rafika/si-admin/api/skills/delete.php",
                     method: "DELETE",
                     data: JSON.stringify({
                         id: id,
