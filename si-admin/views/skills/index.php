@@ -1,8 +1,8 @@
 <?php
-//session_start();
- //if (!isset($_SESSION['user'])) {
-   //return header('Location: http://rafikaaprida8.amisbudi.cloud/portofolio-rafika/si-admin/views/Login/');
-}
+// //session_start();
+//  //if (!isset($_SESSION['user'])) {
+//    //return header('Location: http://rafikaaprida8.amisbudi.cloud/portofolio-rafika/si-admin/views/Login/');
+// }
 ?>
 <!doctype html>
 <html lang="en">
